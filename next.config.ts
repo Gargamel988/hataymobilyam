@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Görsel optimizasyonu
-  output: "standalone",
+  output: "export",
 
   images: {
     remotePatterns: [
