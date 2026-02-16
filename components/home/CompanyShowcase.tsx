@@ -10,6 +10,7 @@ type Company = {
     location: string
     logo: string
     productCount: number
+    phone: string
     rating: number
     verified: boolean
     yearsActive: number
@@ -97,10 +98,12 @@ function CompanyShowcase({ companies }: { companies: Company[] }) {
                                     Ürünleri Gör
                                 </Button>
                             </Link>
-                            <Button size="sm" className="flex-1 gap-1 bg-amber-700 hover:bg-amber-800 text-white">
-                                <MessageSquare className="h-3.5 w-3.5" />
-                                İletişime Geç
-                            </Button>
+                            <Link href={`https://wa.me/+90${company.phone}`} className="flex-1" target="_blank">
+                                <Button size="sm" className="flex-1 gap-1 bg-amber-700 hover:bg-amber-800 text-white">
+                                    <MessageSquare className="h-3.5 w-3.5" />
+                                    İletişime Geç
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 ))}

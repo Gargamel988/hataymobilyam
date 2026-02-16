@@ -35,11 +35,6 @@ export const registerScheme = z.object({
     .regex(/[0-9]/, "Şifre en az bir rakam içermelidir"),
 
   sehir: z.string().min(2, "Şehir seçiniz"),
-
-  hizmetler: z
-    .array(z.string())
-    .min(1, "En az bir hizmet seçmelisiniz")
-    .max(10, "En fazla 10 hizmet seçebilirsiniz"),
 });
 
 export type RegisterScheme = z.infer<typeof registerScheme>;

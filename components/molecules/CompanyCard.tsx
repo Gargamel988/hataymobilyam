@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Badge } from "@/components/atoms/Badge"
-import { CheckCircle, MapPin, Star, Package, Clock, ArrowRight, MessageSquare } from "lucide-react"
+import { CheckCircle, MapPin, Star, Package, Clock, ArrowRight } from "lucide-react"
 import { type Company } from "@/services/CompanyServices"
 
 interface CompanyCardProps {

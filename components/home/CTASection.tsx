@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 
 function CTASection() {
     return (
-        <section className=" py-16  bg-gradient-to-br from-amber-50/50 to-stone-100 dark:from-stone-950 dark:to-stone-900/50">
+        <section className=" py-16  bg-linear-to-br from-amber-50/50 to-stone-100 dark:from-stone-950 dark:to-stone-900/50">
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12 container mx-auto max-w-[1450px] ">
                 {/* Buyers - Left Column */}
                 <div className="relative overflow-hidden rounded-2xl bg-stone-100 dark:bg-stone-900 p-8 md:p-12 flex flex-col items-start justify-center text-left group hover:shadow-lg transition-all duration-300">
@@ -15,7 +15,7 @@ function CTASection() {
                         Aradığınız Mobilyayı Bulun
                     </h2>
                     <p className="text-stone-600 dark:text-stone-400 mb-8 max-w-sm text-lg">
-                        Hatay'ın en seçkin mobilya üreticilerini keşfedin, hayalinizdeki ürüne doğrudan üreticisinden ulaşın.
+                        Hatay&apos;ın en seçkin mobilya üreticilerini keşfedin, hayalinizdeki ürüne doğrudan üreticisinden ulaşın.
                     </p>
                     <Link href="/firmalar">
                         <Button className="h-12 px-8 text-base bg-stone-900 hover:bg-stone-800 text-white dark:bg-white dark:text-stone-900 dark:hover:bg-stone-200">

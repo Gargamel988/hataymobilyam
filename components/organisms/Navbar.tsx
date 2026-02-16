@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 import {
     NavigationMenu,
@@ -70,11 +71,16 @@ export function Navbar() {
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
             <div className="container flex h-16 items-center justify-between px-4">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-700 dark:bg-white">
-                        <Store className="h-5 w-5 dark:text-amber-700 text-white" />
+                <Link href="/" className="flex items-center gap-3">
+                    <div className="relative h-10 w-10 overflow-hidden rounded-lg">
+                        <Image
+                            src="/images/logo.webp"
+                            alt="Hatay Mobilya Logo"
+                            fill
+                            className="object-contain"
+                        />
                     </div>
-                    <span className="hidden font-bold text-xl sm:inline-block">
+                    <span className="hidden text-lg font-bold tracking-tight sm:inline-block">
                         Hatay Mobilya
                     </span>
                 </Link>

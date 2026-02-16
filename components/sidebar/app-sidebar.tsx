@@ -1,12 +1,10 @@
 "use client"
-
 import React from "react"
 import {
-  GalleryVerticalEnd,
   Settings2,
   SquareTerminal,
 } from "lucide-react"
-
+import { useRouter } from "next/navigation"
 import { NavMain } from "@/components/sidebar/nav-main"
 import { NavUser } from "@/components/sidebar/nav-user"
 import { TeamSwitcher } from "@/components/sidebar/team-switcher"
@@ -18,7 +16,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { createClient } from "@/lib/supabase/client"
-import { useRouter } from "next/navigation"
+
+
 
 export function AppSidebar({ name, email, avatar, ...props }: { name: string, email: string, avatar: string } & React.ComponentProps<typeof Sidebar>) {
   const router = useRouter()
@@ -31,8 +30,8 @@ export function AppSidebar({ name, email, avatar, ...props }: { name: string, em
     teams: [
       {
         name: "Hatay Mobilyam",
-        logo: GalleryVerticalEnd,
-        plan: "Ücretsiz Plan",
+        logo: "/images/logo.webp",
+        plan: "Yönetim Paneli",
       },
     ],
     navMain: [

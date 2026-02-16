@@ -19,7 +19,7 @@ function HeroSection() {
                     priority
                     sizes="(max-width: 1200px) 100vw, 1200px"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/50 to-transparent" />
             </div>
 
             {/* Content */}

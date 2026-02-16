@@ -3,10 +3,9 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Switch } from "@/components/ui/switch"
+
 import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import { Key, Bell, Trash2, LogOut, Loader2, Eye, EyeOff } from "lucide-react"
+import { Key, Trash2, LogOut, Loader2, Eye, EyeOff } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
@@ -49,8 +48,9 @@ export function SettingsClient() {
             setCurrentPassword("")
             setNewPassword("")
             setConfirmPassword("")
-        } catch (error: any) {
-            toast.error(error?.message || "Şifre güncellenirken bir hata oluştu.")
+        } catch (error: unknown) {
+            const message = error instanceof Error ? error.message : "Şifre güncellenirken bir hata oluştu."
+            toast.error(message)
         } finally {
             setIsUpdatingPassword(false)
         }

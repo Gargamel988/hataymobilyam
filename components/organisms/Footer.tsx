@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { FooterSection } from "@/components/ui/footer-section";
 import { useTheme } from "next-themes";
 import { usePath } from "@/providers/pathprovıder"
@@ -10,10 +10,10 @@ function Footer() {
     const pathname = usePath()
     const hiddenFooterPaths = ["/auth", "/not-found", "/sifremi-unuttum", "/panel"]
 
-    const [mounted, setMounted] = useState(false);
+    const mountedRef = useRef(false);
 
     useEffect(() => {
-        setMounted(true);
+        mountedRef.current = true;
     }, []);
 
     if (pathname && hiddenFooterPaths.some(path => pathname.startsWith(path))) {
@@ -23,7 +23,7 @@ function Footer() {
 
     return (
         <div className="block">
-            <FooterSection isDarkMode={mounted && theme === "dark"} setIsDarkMode={(value) => setTheme(value ? "dark" : "light")} />
+            <FooterSection isDarkMode={mountedRef.current && theme === "dark"} setIsDarkMode={(value) => setTheme(value ? "dark" : "light")} />
         </div>
     );
 }

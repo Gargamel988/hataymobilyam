@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { BadgeCheck, MapPin, MessageSquare, Phone } from "lucide-react"
 import Image from "next/image"
@@ -44,7 +43,7 @@ function WorkshopHero({
                     priority
                 />
                 {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
             </div>
 
             {/* Workshop Card */}

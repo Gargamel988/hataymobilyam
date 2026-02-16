@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     siteName: 'Hatay Mobilya Pazaryeri',
     images: [
       {
-        url: 'https://hataymobilyam.com/og-image.png',
+        url: 'https://hataymobilyam.com/images/logo.webp',
         width: 1200,
         height: 630,
         alt: 'Hatay Mobilya Pazaryeri - B2B Mobilya Platformu',
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Hatay Mobilya Pazaryeri | Hatay'ın En Büyük B2B Mobilya Platformu",
     description: "Hatay'ın yerel mobilya üreticilerini bölgedeki alıcılarla buluşturan B2B pazaryeri. Ücretsiz teklif alın!",
-    images: ['https://hataymobilyam.com/og-image.png'],
+    images: ['https://hataymobilyam.com/images/logo.webp'],
     creator: '@hataymobilyam',
   },
   robots: {
@@ -110,7 +110,7 @@ export default function RootLayout({
     "@type": "FurnitureStore",
     "name": "Hatay Mobilya Pazaryeri",
     "url": "https://hataymobilyam.com",
-    "logo": "https://hataymobilyam.com/logo.png",
+    "logo": "https://hataymobilyam.com/images/logo.webp",
     "description": "Hatay'ın yerel mobilya üreticilerini ve zanaatkarlarını bölgedeki alıcılarla buluşturan B2B mobilya pazaryeri.",
     "telephone": "+90-553-731-9288",
     "email": "omeraydin1.web@gmail.com",

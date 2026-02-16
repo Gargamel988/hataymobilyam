@@ -10,7 +10,7 @@ interface CompanyHeroProps {
 
 export function CompanyHero({ searchQuery, onSearchChange, stats }: CompanyHeroProps) {
     return (
-        <section className="relative bg-gradient-to-br from-amber-50 via-background to-amber-50/30 dark:from-amber-950/20 dark:via-background dark:to-amber-950/10 border-b">
+        <section className="relative bg-linear-to-br from-amber-50 via-background to-amber-50/30 dark:from-amber-950/20 dark:via-background dark:to-amber-950/10 border-b">
             <div className="container mx-auto px-4 py-12 md:py-16">
                 <div className="max-w-3xl mx-auto text-center mb-8">
                     <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">

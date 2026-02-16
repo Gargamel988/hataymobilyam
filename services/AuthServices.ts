@@ -7,7 +7,6 @@ type RegisterProps = {
   yetkili_adi: string;
   telefon: string;
   sehir: string;
-  hizmetler: string[];
 };
 
 type LoginProps = {
@@ -23,7 +22,6 @@ export const Register = async ({
   yetkili_adi,
   telefon,
   sehir,
-  hizmetler,
 }: RegisterProps) => {
   const supabase = createClient();
 
@@ -36,7 +34,6 @@ export const Register = async ({
         yetkili_adi,
         telefon,
         sehir,
-        hizmetler,
       },
     },
   });

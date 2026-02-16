@@ -160,6 +160,7 @@ const getCompanies = async () => {
     full_name, 
     slug,
     avatar_url, 
+    phone,
     district,
     products:Product(id)
   `,
@@ -175,10 +176,9 @@ const getCompanies = async () => {
     name: company.full_name || "İsimsiz Firma",
     category: "Mobilya Üreticisi", // Default category or fetch from somewhere
     location: company.district || "Hatay",
-    logo:
-      company.avatar_url ||
-      "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop", // Default logo
+    logo: company.avatar_url,
     productCount: company.products?.length || 0,
+    phone: company.phone,
     rating: (Math.random() * 2 + 3).toFixed(1),
     verified: Math.random() > 0.5,
     yearsActive: Math.floor(Math.random() * 10) + 1,

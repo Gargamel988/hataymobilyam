@@ -173,7 +173,7 @@ export default function TermsPage() {
     return (
         <div className="min-h-screen bg-background">
             {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-amber-50 via-background to-orange-50/30 dark:from-amber-950/20 dark:via-background dark:to-orange-950/10 border-b overflow-hidden">
+            <section className="relative bg-linear-to-br from-amber-50 via-background to-orange-50/30 dark:from-amber-950/20 dark:via-background dark:to-orange-950/10 border-b overflow-hidden">
                 <div className="container mx-auto px-4 py-16 md:py-24 text-center relative z-10">
                     <Badge className="bg-amber-100 text-amber-700 border-amber-200 mb-4">
                         <Scale className="h-3.5 w-3.5 mr-1.5" />
@@ -272,7 +272,7 @@ export default function TermsPage() {
                     </div>
 
                     {/* Contact Section */}
-                    <Card className="mt-8 border-amber-200 dark:border-amber-800 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/10">
+                    <Card className="mt-8 border-amber-200 dark:border-amber-800 bg-linear-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/10">
                         <CardContent className="p-6 md:p-8">
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="bg-amber-100 dark:bg-amber-900/30 p-2.5 rounded-lg">

@@ -2,9 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -16,7 +16,7 @@ import {
     ArrowLeft,
 } from "lucide-react";
 import Link from "next/link";
-import { use, useState } from "react";
+import { use } from "react";
 
 const getRequestData = (slug: string) => {
     return {
@@ -52,7 +52,6 @@ const getRequestData = (slug: string) => {
 export default function RequestDetailPage({ params }: { params: Promise<{ slug: string }> }) {
     const slug = use(params).slug;
     const request = getRequestData(slug);
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
     return (
         <div className="container mx-auto p-4 md:p-6 pb-24 max-w-6xl">
@@ -138,7 +137,7 @@ export default function RequestDetailPage({ params }: { params: Promise<{ slug: 
                                 <p className="text-sm text-muted-foreground mb-4 max-w-xs">
                                     İletişim bilgilerini görmek ve direkt aramak için Pro pakete geçin.
                                 </p>
-                                <Button className="shadow-lg">Pro'ya Yükselt</Button>
+                                <Button className="shadow-lg">Pro&apos;ya Yükselt</Button>
                             </div>
                         )}
 

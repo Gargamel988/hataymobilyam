@@ -3,7 +3,6 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ContactInfoItem } from "@/components/molecules/ContactInfoItem"
 import { MapPin, Clock, Navigation } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 
 interface WorkshopVisitProps {

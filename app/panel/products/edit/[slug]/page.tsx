@@ -1,4 +1,4 @@
-import { GetProductById, GetProductBySlug } from "@/services/ProductServices";
+import { GetProductBySlug } from "@/services/ProductServices";
 import { EditProductForm } from "@/components/panel/products/EditProductForm";
 import { notFound } from "next/navigation";
 

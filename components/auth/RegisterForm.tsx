@@ -1,10 +1,8 @@
 "use client"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Eye, EyeOff, Building2, User, Phone, Mail, Lock, MapPin } from "lucide-react"
 import { RegisterScheme, registerScheme } from "@/schemas/registerScheme"
 import { Controller, useForm } from "react-hook-form"
@@ -25,15 +23,6 @@ const sehirler: string[] = [
     "Belen",
 ]
 
-const hizmetler: { id: string, label: string }[] = [
-    { id: "salon", label: "Salon Takımları" },
-    { id: "yatak", label: "Yatak Odası" },
-    { id: "yemek", label: "Yemek Odası" },
-    { id: "mutfak", label: "Mutfak Mobilyası" },
-    { id: "ofis", label: "Ofis Mobilyası" },
-    { id: "bahce", label: "Bahçe & Dış Mekan" },
-    { id: "diger", label: "Diğer" },
-]
 
 function RegisterForm() {
     const [showPassword, setShowPassword] = useState(false)
@@ -52,7 +41,6 @@ function RegisterForm() {
             email: "",
             sifre: "",
             sehir: "",
-            hizmetler: [],
         },
     })
 
@@ -64,7 +52,6 @@ function RegisterForm() {
             yetkili_adi: data.yetkili_adi,
             telefon: data.telefon,
             sehir: data.sehir,
-            hizmetler: data.hizmetler,
         })
     }
 
@@ -296,49 +283,6 @@ function RegisterForm() {
                             )}
                         />
                     </div>
-                </div>
-
-                {/* Hizmet Kategorileri */}
-                <div className="space-y-2">
-                    <Label className="text-sm font-medium">
-                        Hizmet Kategorileri
-                        <span className="text-muted-foreground font-normal ml-1">(En az 1 seçin)</span>
-                    </Label>
-                    <Controller
-                        name="hizmetler"
-                        control={control}
-                        render={({ field }) => (
-                            <div>
-                                <div className="grid grid-cols-2 gap-2">
-                                    {hizmetler.map((hizmet) => (
-                                        <div key={hizmet.id} className="flex items-center space-x-2">
-                                            <Checkbox
-                                                id={hizmet.id}
-                                                checked={field.value?.includes(hizmet.id)}
-                                                onCheckedChange={(checked) => {
-                                                    if (checked) {
-                                                        field.onChange([...field.value, hizmet.id])
-                                                    } else {
-                                                        field.onChange(field.value.filter((v: string) => v !== hizmet.id))
-                                                    }
-                                                }}
-                                                className=" bg-white border border-gray-300"
-                                            />
-                                            <Label
-                                                htmlFor={hizmet.id}
-                                                className="text-sm font-normal cursor-pointer"
-                                            >
-                                                {hizmet.label}
-                                            </Label>
-                                        </div>
-                                    ))}
-                                </div>
-                                {errors.hizmetler && (
-                                    <p className="text-red-500 text-xs mt-1">{errors.hizmetler.message}</p>
-                                )}
-                            </div>
-                        )}
-                    />
                 </div>
 
                 {/* Submit */}

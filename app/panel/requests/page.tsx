@@ -1,8 +1,5 @@
 "use client";
-
-import { useState } from "react";
 import {
-    Filter,
     MapPin,
     Clock,
     ChevronRight,
@@ -73,7 +70,6 @@ const requests = [
 ];
 
 export default function RequestsPage() {
-    const [filterCategory, setFilterCategory] = useState("all");
 
     return (
         <div className="container mx-auto p-4 md:p-6 pb-20 space-y-6">
@@ -199,7 +195,7 @@ export default function RequestsPage() {
 
                             {req.isLocked ? (
                                 <Button variant="secondary" size="sm" className="gap-2">
-                                    <Lock className="h-4 w-4" /> Pro'ya Geç
+                                    <Lock className="h-4 w-4" /> Pro&apos;ya Geç
                                 </Button>
                             ) : (
                                 <Button size="sm" className="gap-2" asChild>

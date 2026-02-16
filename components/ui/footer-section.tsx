@@ -87,7 +87,7 @@ function FooterSection({ isDarkMode, setIsDarkMode }: { isDarkMode: boolean, set
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Facebook'ta bizi takip edin</p>
+                    <p>Facebook&apos;ta bizi takip edin</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -100,7 +100,7 @@ function FooterSection({ isDarkMode, setIsDarkMode }: { isDarkMode: boolean, set
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Twitter'da bizi takip edin</p>
+                    <p>Twitter&apos;da bizi takip edin</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -113,7 +113,7 @@ function FooterSection({ isDarkMode, setIsDarkMode }: { isDarkMode: boolean, set
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Instagram'da bizi takip edin</p>
+                    <p>Instagram&apos;da bizi takip edin</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -126,7 +126,7 @@ function FooterSection({ isDarkMode, setIsDarkMode }: { isDarkMode: boolean, set
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>LinkedIn'de bizi takip edin</p>
+                    <p>LinkedIn&apos;de bizi takip edin</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>

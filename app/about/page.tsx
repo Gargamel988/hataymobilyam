@@ -71,7 +71,7 @@ export default function AboutPage() {
     return (
         <div className="min-h-screen bg-background">
             {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-amber-50 via-background to-orange-50/30 dark:from-amber-950/20 dark:via-background dark:to-orange-950/10 border-b overflow-hidden">
+            <section className="relative bg-linear-to-br from-amber-50 via-background to-orange-50/30 dark:from-amber-950/20 dark:via-background dark:to-orange-950/10 border-b overflow-hidden">
                 <div className="container mx-auto px-4 py-16 md:py-24 text-center relative z-10">
                     <Badge className="bg-amber-100 text-amber-700 border-amber-200 mb-4">
                         <Building2 className="h-3.5 w-3.5 mr-1.5" />
@@ -114,7 +114,7 @@ export default function AboutPage() {
                                 kazanarak yeni müşterilere erişim sağlar.
                             </p>
                         </div>
-                        <div className="bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/20 rounded-3xl p-8 md:p-12">
+                        <div className="bg-linear-to-br from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/20 rounded-3xl p-8 md:p-12">
                             <div className="space-y-6">
                                 <div className="flex items-start gap-4">
                                     <div className="bg-white dark:bg-background p-2.5 rounded-lg shadow-sm">
@@ -239,7 +239,7 @@ export default function AboutPage() {
             {/* CTA Section */}
             <section className="py-16 md:py-24">
                 <div className="container mx-auto px-4">
-                    <div className="bg-gradient-to-br from-amber-600 to-orange-600 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
+                    <div className="bg-linear-to-br from-amber-600 to-orange-600 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
                         <div className="relative z-10">
                             <h2 className="text-3xl md:text-4xl font-bold mb-4">
                                 Siz de Aramıza Katılın!

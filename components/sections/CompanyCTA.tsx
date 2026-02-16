@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 
 export function CompanyCTA() {
     return (
-        <div className="mt-12 p-8 rounded-2xl bg-gradient-to-br from-amber-50 to-amber-100/50 dark:from-amber-950/30 dark:to-amber-900/20 border border-amber-200/50 dark:border-amber-800/30 text-center">
+        <div className="mt-12 p-8 rounded-2xl bg-linear-to-br from-amber-50 to-amber-100/50 dark:from-amber-950/30 dark:to-amber-900/20 border border-amber-200/50 dark:border-amber-800/30 text-center">
             <Building2 className="h-12 w-12 text-amber-600 dark:text-amber-400 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-foreground mb-2">
                 Firmanızı Kaydedin

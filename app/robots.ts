@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/panel", "/not-found"],
+      disallow: ["/panel", "/not-found", "/privacy"],
     },
     sitemap: "https://hataymobilyam.com/sitemap.xml",
   };
