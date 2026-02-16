@@ -35,7 +35,7 @@ export function ProductForm() {
             category: "",
             price: "",
             originalPrice: "",
-            images: [],
+            image_url: [],
             techSpecs: [],
             features: [],
         },
@@ -68,7 +68,7 @@ export function ProductForm() {
     }
 
     const handleImageUpload = async (files: File[]) => {
-        const currentImages = formData.images || []
+        const currentImages = formData.image_url || []
         const remainingSlots = 5 - currentImages.length
 
         if (remainingSlots <= 0) {
@@ -89,7 +89,7 @@ export function ProductForm() {
             const validUrls = urls.filter(url => url !== null) as string[]
 
             if (validUrls.length > 0) {
-                setValue("images", [...currentImages, ...validUrls], { shouldValidate: true })
+                setValue("image_url", [...currentImages, ...validUrls], { shouldValidate: true })
                 toast.success(`${validUrls.length} görsel yüklendi.`)
             }
         } catch (error) {
@@ -165,11 +165,11 @@ export function ProductForm() {
                 {/* Right Column (Sidebar) */}
                 <div className="space-y-8">
                     <ProductImages
-                        images={formData.images || []}
+                        images={formData.image_url || []}
                         onAddImage={handleImageUpload}
                         onRemoveImage={(index) => {
-                            const currentImages = formData.images || []
-                            setValue("images", currentImages.filter((_, i) => i !== index), { shouldValidate: true })
+                            const currentImages = formData.image_url || []
+                            setValue("image_url", currentImages.filter((_: string, i: number) => i !== index), { shouldValidate: true })
                         }}
                     />
 

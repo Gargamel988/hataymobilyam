@@ -1,7 +1,20 @@
+import { Suspense } from "react"
+import { Metadata } from "next"
 import { GetProducts } from "@/services/ProductServices"
 import { FilterCategory } from "@/components/organisms/FilterSidebar"
 import { ProductPageClient } from "./_components/ProductPageClient"
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query"
+
+export const metadata: Metadata = {
+    title: "Mobilya Ürünleri | Hatay Mobilya Koleksiyonu",
+    description: "Hatay'ın seçkin mobilya üreticilerinden salon, yatak odası, mutfak, ofis ve özel üretim mobilya ürünlerini keşfedin. El emeği göz nuru ürünler.",
+    alternates: { canonical: "/products" },
+    openGraph: {
+        title: "Mobilya Ürünleri | Hatay Mobilya Koleksiyonu",
+        description: "Hatay'ın en iyi mobilya üreticilerinden yüzlerce ürünü keşfedin ve teklif alın.",
+        url: "https://hataymobilyam.com/products",
+    },
+}
 
 const baseFilterCategories: FilterCategory[] = [
     {
@@ -75,9 +88,11 @@ export default async function ÜrünlerPage() {
     return (
         <div className="min-h-screen bg-background">
             <HydrationBoundary state={dehydrate(queryClient)}>
-                <ProductPageClient
-                    baseCategories={baseFilterCategories}
-                />
+                <Suspense fallback={<div className="flex justify-center items-center min-h-[50vh]"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-amber-600" /></div>}>
+                    <ProductPageClient
+                        baseCategories={baseFilterCategories}
+                    />
+                </Suspense>
             </HydrationBoundary>
         </div>
     )

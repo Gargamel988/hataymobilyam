@@ -8,6 +8,56 @@ import { FeaturesSection } from "@/components/home/FeaturesSection"
 import { FAQSection } from "@/components/home/FAQSection"
 import { QueryClient } from '@tanstack/react-query';
 import { getCategory, getCompanies } from '@/services/CategoryService';
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Hatay Mobilya | Mobilya Ürünleri",
+    template: "%s | Hatay Mobilya"
+  },
+  description: "Hatay Mobilya; ev ve ofis mobilya ürünlerini satan profesyonel mobilya şirketi",
+  keywords: ["Hatay Mobilya", "Web Tasarım", "Mobil Uygulama", "E-Ticaret", "SEO", "Dijital Ajans", "Yazılım Şirketi Hatay", "Next.js", "React Native"],
+  authors: [{ name: "Hatay Mobilya Ekibi" }],
+  creator: "Hatay Mobilya",
+  publisher: "Hatay Mobilya",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
+  metadataBase: new URL('https://hataymobilyam.com'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: "Hatay Mobilya | Mobilya Ürünleri",
+    description: "Hatay Mobilya; ev ve ofis mobilya ürünlerini satan profesyonel mobilya şirketi",
+    url: 'https://hataymobilyam.com',
+    siteName: 'Hatay Mobilyam',
+    images: [
+      {
+        url: 'https://hataymobilyam.com/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Hatay Mobilya - Mobilya Ürünleri',
+      },
+    ],
+    locale: 'tr_TR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Hatay Mobilya | Mobilya Ürünleri',
+    description: 'Hatay Mobilya; ev ve ofis mobilya ürünlerini satan profesyonel mobilya şirketi',
+    images: ['https://hataymobilyam.com/og-image.png'],
+    creator: '@hataymobilyam',
+  },
+};
 
 export default async function Home() {
   const queryClient = new QueryClient();

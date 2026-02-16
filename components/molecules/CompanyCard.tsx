@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Badge } from "@/components/atoms/Badge"
 import { CheckCircle, MapPin, Star, Package, Clock, ArrowRight, MessageSquare } from "lucide-react"
-import { type Company } from "@/lib/data/company"
+import { type Company } from "@/services/CompanyServices"
 
 interface CompanyCardProps {
     company: Company
@@ -41,7 +41,7 @@ export function CompanyCard({ company, variant = "grid" }: CompanyCardProps) {
                                 </h3>
                                 <p
 
-                                    className="text-sm text-amber-600 dark:text-amber-500 font-medium ">{company.category}</p>
+                                    className="text-sm text-amber-600 dark:text-amber-500 font-medium ">{company.categories?.[0]}</p>
                                 <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1">
                                     <MapPin className="h-3 w-3" />
                                     <span>{company.location}, Hatay</span>
@@ -65,7 +65,7 @@ export function CompanyCard({ company, variant = "grid" }: CompanyCardProps) {
                         <div className="flex items-center gap-6 mt-3 text-sm">
                             <div className="flex items-center gap-1">
                                 <Star className="h-4 w-4 fill-amber-500 text-amber-500" />
-                                <span className="font-semibold">{company.rating}</span>
+                                <span className="font-semibold">{Number(company.rating).toFixed(1)}</span>
                             </div>
                             <div className="flex items-center gap-1 text-muted-foreground">
                                 <Package className="h-4 w-4" />
@@ -118,7 +118,7 @@ export function CompanyCard({ company, variant = "grid" }: CompanyCardProps) {
                         <h3 className="font-semibold text-foreground line-clamp-1 group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors">
                             {company.name}
                         </h3>
-                        <p className="text-sm text-amber-600 dark:text-amber-500 font-medium mt-0.5 line-clamp-1">{company.category}</p>
+                        <p className="text-sm text-amber-600 dark:text-amber-500 font-medium mt-0.5 line-clamp-1">{company.categories?.[0]}</p>
                         <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1">
                             <MapPin className="h-3 w-3" />
                             <span>{company.location}, Hatay</span>
@@ -138,7 +138,7 @@ export function CompanyCard({ company, variant = "grid" }: CompanyCardProps) {
                     <div className="text-center">
                         <div className="flex items-center justify-center gap-1 text-amber-500">
                             <Star className="h-3.5 w-3.5 fill-current" />
-                            <span className="font-bold text-foreground">{company.rating}</span>
+                            <span className="font-bold text-foreground">{Number(company.rating).toFixed(1)}</span>
                         </div>
                         <p className="text-xs text-muted-foreground mt-0.5">Puan</p>
                     </div>

@@ -12,8 +12,7 @@ export default async function EditProductPage(props: PageProps) {
     const params = await props.params;
     const slug = decodeURIComponent(params.slug);
     const product = await GetProductBySlug(slug);
-    console.log(product, "product")
-    console.log(slug, "slug")
+
     if (!product) {
         notFound();
     }

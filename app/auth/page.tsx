@@ -1,4 +1,12 @@
+import { Metadata } from "next"
 import { LoginForm } from "@/components/auth/LoginForm"
+
+export const metadata: Metadata = {
+    title: "Firma Girişi & Kayıt | Hatay Mobilya Pazaryeri",
+    description: "Hatay Mobilya Pazaryeri'ne firma olarak giriş yapın veya kaydolun. Dijital profilinizi oluşturun, ürünlerinizi sergileyin ve yeni müşterilere ulaşın.",
+    alternates: { canonical: "/auth" },
+    robots: { index: false, follow: true },
+}
 import { RegisterForm } from "@/components/auth/RegisterForm"
 import Image from "next/image"
 

@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation"
+import { Metadata } from "next"
 import { WorkshopHero } from "@/components/organisms/WorkshopHero"
 import { WorkshopStory } from "@/components/organisms/WorkshopStory"
 import { WorkshopProducts } from "@/components/organisms/WorkshopProducts"
-import { WorkshopReviews } from "@/components/organisms/WorkshopReviews"
 import { WorkshopVisit } from "@/components/organisms/WorkshopVisit"
 import { getCompanyBySlug } from "@/services/CompanyServices"
 import { getProductsByCompanyId } from "@/services/ProductServices"
@@ -11,6 +11,23 @@ import { Product } from "@/components/molecules/ProductCard"
 
 interface PageProps {
     params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params
+    const company = await getCompanyBySlug(slug)
+    if (!company) return { title: "Firma Bulunamadı" }
+    return {
+        title: `${company.name} | ${company.location} Mobilya Firması`,
+        description: company.description || `${company.name} - ${company.location}, Hatay'da hizmet veren mobilya firması. Ürünleri inceleyin ve teklif alın.`,
+        alternates: { canonical: `/companies/${slug}` },
+        openGraph: {
+            title: `${company.name} | ${company.location} Mobilya`,
+            description: company.description || `${company.name} mobilya firması detayları`,
+            url: `https://hataymobilyam.com/companies/${slug}`,
+            images: company.logoSrc ? [{ url: company.logoSrc, width: 200, height: 200, alt: company.name }] : [],
+        },
+    }
 }
 
 export default async function CompanyDetailPage({ params }: PageProps) {

@@ -1,5 +1,16 @@
-
+import { Metadata } from "next"
 import { getAllCompanies } from "@/services/CompanyServices"
+
+export const metadata: Metadata = {
+    title: "Mobilya Firmaları | Hatay'ın Güvenilir Mobilya Üreticileri",
+    description: "Hatay'ın en güvenilir mobilya firmalarını keşfedin. Antakya, İskenderun, Defne ve diğer ilçelerdeki onaylı mobilya üreticilerinden teklif alın.",
+    alternates: { canonical: "/companies" },
+    openGraph: {
+        title: "Mobilya Firmaları | Hatay'ın Güvenilir Mobilya Üreticileri",
+        description: "Hatay'ın onaylı mobilya firmalarını keşfedin ve ücretsiz teklif alın.",
+        url: "https://hataymobilyam.com/companies",
+    },
+}
 import { FilterCategory } from "@/components/organisms/FilterSidebar"
 import { CompanyPageClient } from "./_components/CompanyPageClient"
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query"

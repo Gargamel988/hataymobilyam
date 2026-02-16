@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { Metadata } from "next"
 import { ChevronLeft, MapPin, Star, Shield, Phone, MessageCircle, Heart, Share2, Truck, Award, Clock, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ProductBadge } from "@/components/atoms/ProductBadge"
@@ -9,6 +10,23 @@ import Image from "next/image"
 
 interface PageProps {
     params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params
+    const product = await GetProductBySlug(slug)
+    if (!product) return { title: "Ürün Bulunamadı" }
+    return {
+        title: `${product.name} | ${product.supplier?.name || "Hatay Mobilya"}`,
+        description: product.description || `${product.name} - Hatay'ın yerel mobilya üreticilerinden kaliteli mobilya ürünü. Detayları inceleyin ve teklif alın.`,
+        alternates: { canonical: `/products/${slug}` },
+        openGraph: {
+            title: `${product.name} | Hatay Mobilya Pazaryeri`,
+            description: product.description || `${product.name} ürün detayları`,
+            url: `https://hataymobilyam.com/products/${slug}`,
+            images: product.images?.[0] ? [{ url: product.images[0], width: 800, height: 800, alt: product.name }] : [],
+        },
+    }
 }
 
 export default async function ProductDetailPage({ params }: PageProps) {

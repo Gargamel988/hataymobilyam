@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button"
 import {
     Sofa,
     Bed,
-    UtensilsCrossed,
+
     ChefHat,
     Briefcase,
     Ruler,
@@ -27,8 +27,8 @@ import { usePath } from "@/providers/pathprovıder"
 
 const categories = [
     {
-        title: "Salon Mobilyası",
-        href: "/products?kategori=salon",
+        title: "Oturma Odası",
+        href: "/products?kategori=oturma-odasi",
         description: "Modern ve klasik koltuk takımları, köşe grupları",
         icon: Sofa,
     },
@@ -39,26 +39,20 @@ const categories = [
         icon: Bed,
     },
     {
-        title: "Yemek Odası",
-        href: "/products?kategori=yemek-odasi",
-        description: "Yemek masaları, sandalyeler ve konsol takımları",
-        icon: UtensilsCrossed,
-    },
-    {
         title: "Mutfak",
         href: "/products?kategori=mutfak",
         description: "Mutfak dolapları ve modüler mutfak çözümleri",
         icon: ChefHat,
     },
     {
-        title: "Ofis",
-        href: "/products?kategori=ofis",
+        title: "Ofis & Çalışma",
+        href: "/products?kategori=ofis-ve-calisma",
         description: "Çalışma masaları, ofis koltukları ve dosya dolapları",
         icon: Briefcase,
     },
     {
-        title: "Özel Ölçü Mobilya",
-        href: "/products?kategori=ozel-olcu",
+        title: "Özel Üretim & Projeler",
+        href: "/products?kategori=ozel-uretim-ve-projeler",
         description: "Size özel tasarlanmış mobilya çözümleri",
         icon: Ruler,
     },
@@ -143,6 +137,24 @@ export function Navbar() {
                                 </Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
+
+                        {/* Hakkımızda */}
+                        <NavigationMenuItem>
+                            <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                <Link href="/about">
+                                    Hakkımızda
+                                </Link>
+                            </NavigationMenuLink>
+                        </NavigationMenuItem>
+
+                        {/* İletişim */}
+                        <NavigationMenuItem>
+                            <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                <Link href="/contact">
+                                    İletişim
+                                </Link>
+                            </NavigationMenuLink>
+                        </NavigationMenuItem>
                     </NavigationMenuList>
                 </NavigationMenu>
 
@@ -209,11 +221,25 @@ export function Navbar() {
                                     Firmalar
                                 </Link>
                                 <Link
-                                    href="/nasil-calisir"
+                                    href="/how-work"
                                     className="block p-3 rounded-lg hover:bg-accent transition-colors text-sm font-medium"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     Nasıl Çalışır?
+                                </Link>
+                                <Link
+                                    href="/about"
+                                    className="block p-3 rounded-lg hover:bg-accent transition-colors text-sm font-medium"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    Hakkımızda
+                                </Link>
+                                <Link
+                                    href="/contact"
+                                    className="block p-3 rounded-lg hover:bg-accent transition-colors text-sm font-medium"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    İletişim
                                 </Link>
                             </div>
                         </div>

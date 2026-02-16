@@ -1,4 +1,16 @@
+import { Metadata } from "next"
 import { Button } from "@/components/ui/button"
+
+export const metadata: Metadata = {
+    title: "Nasıl Çalışır? | Hatay Mobilya Pazaryeri Kullanım Rehberi",
+    description: "Hatay Mobilya Pazaryeri nasıl çalışır? Firma keşfi, teklif alma ve mobilya sipariş sürecini adım adım öğrenin. Müşteriler ve firmalar için rehber.",
+    alternates: { canonical: "/how-work" },
+    openGraph: {
+        title: "Nasıl Çalışır? | Hatay Mobilya Pazaryeri Kullanım Rehberi",
+        description: "Mobilya teklif alma sürecini adım adım öğrenin.",
+        url: "https://hataymobilyam.com/how-work",
+    },
+}
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"

@@ -20,9 +20,18 @@ const footerLinks: { title: string; href: string }[] = [
     href: "/contact",
   },
   {
-    title: "Sıkça Sorulan Sorular",
-    href: "/faq",
+    title: "Firmalar",
+    href: "/companies",
   },
+  {
+    title: "Ürünler",
+    href: "/products",
+  },
+  {
+    title: "nasıl çalışır",
+    href: "/how-work",
+  },
+
   {
     title: "Gizlilik Politikası",
     href: "/privacy",
@@ -42,7 +51,7 @@ function FooterSection({ isDarkMode, setIsDarkMode }: { isDarkMode: boolean, set
           <div className="relative">
             <h2 className="mb-4 text-3xl font-bold tracking-tight">Hatay Mobilya Pazaryeri</h2>
             <p className="mb-6 text-muted-foreground text-sm leading-relaxed">
-              Hatay&apos;ın ödüllü mobilya üreticilerini ve zanaatkarlarını dünya genelindeki alıcılarla buluşturan lider B2B pazaryeri. Kaliteli el işçiliği, modern tasarımlar ve güvenilir tedarik zinciri çözümleriyle mobilya ticaretinin yeni merkezi.
+              Hatay&apos;ın yerel mobilya üreticilerini  bölgedeki alıcılarla buluşturan B2B pazaryeri. Kaliteli el işçiliği, modern tasarımlar ve güvenilir hizmet anlayışıyla Hatay&apos;ın mobilya sektörünün dijital buluşma noktası.
             </p>
 
             <div className="absolute -right-4 top-0 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
@@ -141,10 +150,10 @@ function FooterSection({ isDarkMode, setIsDarkMode }: { isDarkMode: boolean, set
             © {new Date().getFullYear()} Hatay Mobilya Pazaryeri. Tüm hakları <Link className="underline font-bold" href="https://hatayyazilim.com">Hatay yazılım</Link> tarafından geliştirilmiştir.
           </p>
           <nav className="flex gap-4 text-sm">
-            <Link href="#" className="transition-colors hover:text-primary">
+            <Link href="/privacy" className="transition-colors hover:text-primary">
               Gizlilik Politikası
             </Link>
-            <Link href="#" className="transition-colors hover:text-primary">
+            <Link href="/terms" className="transition-colors hover:text-primary">
               Kullanım Koşulları
             </Link>
           </nav>

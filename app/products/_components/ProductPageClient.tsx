@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { useQuery } from "@tanstack/react-query"
 import { MobileFilterDrawer } from "./MobileFilterDrawer"
 import { SearchHeader } from "./SearchHeader"
@@ -17,8 +18,27 @@ interface ProductPageClientProps {
 
 
 export function ProductPageClient({ baseCategories }: ProductPageClientProps) {
-    const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({})
+    const searchParams = useSearchParams()
+    const kategoriParam = searchParams.get("kategori")
+
+    const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>(() => {
+        if (kategoriParam) {
+            return { kategori: [kategoriParam] } as Record<string, string[]>
+        }
+        return {} as Record<string, string[]>
+    })
     const [searchQuery, setSearchQuery] = useState("")
+
+    useEffect(() => {
+        if (kategoriParam) {
+            setSelectedFilters(prev => ({ ...prev, kategori: [kategoriParam] }))
+        } else {
+            setSelectedFilters(prev => {
+                const { kategori, ...rest } = prev
+                return rest
+            })
+        }
+    }, [kategoriParam])
 
     const { data: products = [] } = useQuery({
         queryKey: ['products'],

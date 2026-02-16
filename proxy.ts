@@ -10,7 +10,7 @@ const protectedRoutes = [
 ];
 
 // Auth sayfaları (giriş yapınca erişilmemeli)
-const authRoutes = ["/auth", "/kayit", "/sifremi-unuttum"];
+const authRoutes = ["/auth"];
 
 export async function middleware(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -63,7 +63,7 @@ export async function middleware(request: NextRequest) {
 
   // Giriş yapmış ve auth sayfasında
   if (isAuthRoute && user) {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(new URL("/panel", request.url));
   }
 
   return supabaseResponse;
