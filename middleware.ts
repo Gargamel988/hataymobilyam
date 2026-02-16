@@ -12,9 +12,7 @@ const protectedRoutes = [
 // Auth sayfaları (giriş yapınca erişilmemeli)
 const authRoutes = ["/auth"];
 
-export const runtime = "edge";
-
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
   });
