@@ -9,7 +9,6 @@ export const useAuth = () => {
   const registerMutation = useMutation({
     mutationFn: Register,
     onSuccess: () => {
-      // Email onayı gerekiyorsa bilgi ver
       toast.success("Kayıt başarılı! Email adresinizi kontrol edin.");
     },
     onError: (error: Error) => {
