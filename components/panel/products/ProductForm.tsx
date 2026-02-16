@@ -14,7 +14,7 @@ import { ProductClassification } from "@/components/panel/products/ProductClassi
 import { Product, productSchema } from "@/schemas/product"
 import type { ProductCategory } from "@/lib/data/products"
 import { useInsertProductMutation } from "@/mutation/Product"
-import { uploadProductImage } from "@/services/ProductServices"
+import { uploadProductImage } from "@/services/ProductServices.client"
 import { toast } from "sonner"
 import type { ProductBadgeType } from "@/components/molecules/ProductCard"
 

@@ -9,7 +9,7 @@ import { CompanyToolbar } from "@/components/molecules/CompanyToolbar"
 import { ActiveFilterList } from "@/components/molecules/ActiveFilterList"
 import { CompanyGrid } from "@/components/sections/CompanyGrid"
 import { CompanyCTA } from "@/components/sections/CompanyCTA"
-import { getAllCompanies, type Company } from "@/services/CompanyServices"
+import { getAllCompanies, type Company } from "@/services/CompanyServices.client"
 import { MobileFilterDrawer } from "./MobileFilterDrawer"
 import { normalize } from "@/utils/utils"
 

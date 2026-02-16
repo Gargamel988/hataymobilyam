@@ -1,4 +1,4 @@
-import { upsertProfile } from "@/services/CompanyServices";
+import { upsertProfile } from "@/services/CompanyServices.client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { ProfileFormData } from "@/schemas/profile";
 

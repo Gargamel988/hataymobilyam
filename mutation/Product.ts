@@ -1,7 +1,10 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { InsertProduct, UpdateProduct } from "@/services/ProductServices";
+import {
+  InsertProduct,
+  UpdateProduct,
+} from "@/services/ProductServices.client";
 import { Product } from "@/schemas/product";
 
 export const useInsertProductMutation = () => {

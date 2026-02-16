@@ -1,15 +1,21 @@
-import { createClient } from "@/lib/supabase/server";
+"use client";
+
+import { createClient } from "@/lib/supabase/client";
+import type { ProfileFormData } from "@/schemas/profile";
+import type { Company } from "./CompanyServices";
+
+export { type Company } from "./CompanyServices";
+
+const getSupabase = () => createClient();
 
 export const uploadFile = async (
   event: React.ChangeEvent<HTMLInputElement>,
-  // Note: This function uses browser APIs (File/event) so it should only be called from client components
 ) => {
   const file = event.target.files?.[0];
   if (!file) return;
 
-  const supabase = await createClient();
+  const supabase = getSupabase();
 
-  // Dosya adını temizle: Türkçe karakterler, boşluklar ve özel karakterleri kaldır
   const fileExt = file.name.split(".").pop();
   const timestamp = Date.now();
   const sanitizedFileName = `avatar-${timestamp}.${fileExt}`;
@@ -23,15 +29,12 @@ export const uploadFile = async (
     return null;
   }
 
-  // Public URL al
   const { data: publicUrlData } = supabase.storage
     .from("avatar")
     .getPublicUrl(data.path);
 
   return publicUrlData.publicUrl;
 };
-
-import type { ProfileFormData } from "@/schemas/profile";
 
 // Türkçe karakterleri dönüştür ve slug oluştur
 const slugify = (text: string): string => {
@@ -63,9 +66,8 @@ const slugify = (text: string): string => {
     .replace(/-+/g, "-");
 };
 
-// Profil kaydet veya güncelle (upsert)
 export const upsertProfile = async (profileData: ProfileFormData) => {
-  const supabase = await createClient();
+  const supabase = getSupabase();
   const { data: user } = await supabase.auth.getUser();
   const firmaAdi = profileData.name || user.user?.user_metadata.firma_adi || "";
   const slug = slugify(firmaAdi);
@@ -101,8 +103,9 @@ export const upsertProfile = async (profileData: ProfileFormData) => {
 
   return data;
 };
+
 export const getProfile = async () => {
-  const supabase = await createClient();
+  const supabase = getSupabase();
   const { data: user } = await supabase.auth.getUser();
   if (!user.user) return null;
 
@@ -119,25 +122,8 @@ export const getProfile = async () => {
   return data;
 };
 
-export type Company = {
-  id: string;
-  slug: string;
-  name: string;
-  categories: string[];
-  location: string;
-  phone: string;
-  logoSrc: string;
-  productCount: number;
-  rating: number;
-  verified: boolean;
-  description: string;
-  yearEstablished: number;
-  authorized?: string;
-  address?: string;
-};
-
 export const getAllCompanies = async (): Promise<Company[]> => {
-  const supabase = await createClient();
+  const supabase = getSupabase();
   const { data, error } = await supabase.from("CompanyProfiles").select("*");
 
   if (error) {
@@ -157,53 +143,13 @@ export const getAllCompanies = async (): Promise<Company[]> => {
     phone: profile.phone || "",
     logoSrc:
       profile.avatar_url ||
-      "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop", // Fallback image
-    productCount: Math.floor(Math.random() * 20) + 1, // Mock product count for visual variety
-    rating: 4.5 + Math.random() * 0.5, // Mock rating
-    verified: Math.random() > 0.5, // Mock verified status
+      "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop",
+    productCount: Math.floor(Math.random() * 20) + 1,
+    rating: 4.5 + Math.random() * 0.5,
+    verified: Math.random() > 0.5,
     description: profile.description || "",
     yearEstablished: 2024,
     authorized: profile.admin || "",
     address: profile.address || "",
   }));
-};
-export const getCompanyBySlug = async (
-  slug: string,
-): Promise<Company | null> => {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("CompanyProfiles")
-    .select("*")
-    .eq("slug", slug)
-    .maybeSingle();
-
-  if (error) {
-    console.error("Error fetching company by slug:", error);
-    return null;
-  }
-
-  if (!data) return null;
-
-  return {
-    id: data.id,
-    slug: data.slug || "",
-    name: data.full_name || "",
-    categories: Array.isArray(data.expertise)
-      ? data.expertise
-      : data.expertise
-        ? [data.expertise]
-        : ["Genel"],
-    location: data.district || "Hatay",
-    address: data.adress || "",
-    phone: data.phone || "",
-    logoSrc:
-      data.avatar_url ||
-      "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop",
-    productCount: 0, // Need to count products separately or use a join/count
-    rating: 0,
-    verified: false,
-    description: data.description || "",
-    yearEstablished: 2024,
-    authorized: data.admin || "",
-  };
 };

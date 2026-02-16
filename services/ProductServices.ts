@@ -1,9 +1,8 @@
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 import { Product } from "@/schemas/product";
 
-const supabase = createClient();
-
 export async function InsertProduct(product: Product) {
+  const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -37,6 +36,7 @@ export async function InsertProduct(product: Product) {
 }
 
 export async function GetProducts() {
+  const supabase = await createClient();
   const { data, error } = await supabase.from("Product").select(`
       *,
       supplier:CompanyProfiles(
@@ -68,12 +68,14 @@ export async function GetProducts() {
 }
 
 export async function DeleteProduct(id: string) {
+  const supabase = await createClient();
   const { data, error } = await supabase.from("Product").delete().eq("id", id);
   if (error) throw error;
   return data;
 }
 
 export async function UpdateProduct(id: string, product: Product) {
+  const supabase = await createClient();
   const payload = {
     name: product.name,
     slug: product.slug,
@@ -99,6 +101,7 @@ export async function UpdateProduct(id: string, product: Product) {
 }
 
 export async function uploadProductImage(file: File) {
+  const supabase = await createClient();
   const fileExt = file.name.split(".").pop();
   const timestamp = Date.now();
   const fileName = `product-${timestamp}.${fileExt}`;
@@ -119,6 +122,7 @@ export async function uploadProductImage(file: File) {
 }
 
 export async function getProductsByCompanyId(companyId: string) {
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from("Product")
     .select(
@@ -158,6 +162,7 @@ export async function getProductsByCompanyId(companyId: string) {
 }
 
 export async function GetProductBySlug(slug: string) {
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from("Product")
     .select(
@@ -226,6 +231,7 @@ export async function GetProductBySlug(slug: string) {
 }
 
 export async function GetProductById(id: string) {
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from("Product")
     .select(
@@ -277,6 +283,7 @@ export async function GetProductById(id: string) {
 }
 
 export async function GetRelatedProducts(currentProductId: string, limit = 4) {
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from("Product")
     .select(

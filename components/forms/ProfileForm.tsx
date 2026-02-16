@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { uploadFile } from "@/services/CompanyServices"
+import { uploadFile } from "@/services/CompanyServices.client"
 import {
     Upload,
     AlertCircle,
@@ -35,7 +35,7 @@ import { useUpsertProfile } from "@/mutation/CompanyProfile"
 import { toast } from "sonner"
 import { createClient } from "@/lib/supabase/client"
 import { useQuery } from "@tanstack/react-query"
-import { getProfile } from "@/services/CompanyServices"
+import { getProfile } from "@/services/CompanyServices.client"
 import { formatPhoneNumber } from "@/utils/FormatTel"
 
 

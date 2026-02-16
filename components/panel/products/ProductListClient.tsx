@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { getProductsByCompanyId, DeleteProduct } from "@/services/ProductServices";
+import { getProductsByCompanyId, DeleteProduct } from "@/services/ProductServices.client";
 import { toast } from "sonner";
 import Link from "next/link";
 import Image from "next/image";

@@ -9,7 +9,7 @@ import { ProductList } from "./ProductList"
 import { FilterCategory, FilterSidebar } from "@/components/organisms/FilterSidebar"
 import { type Product } from "@/components/molecules/ProductCard"
 import { normalize } from "@/utils/utils"
-import { GetProducts } from "@/services/ProductServices"
+import { GetProducts } from "@/services/ProductServices.client"
 
 interface ProductPageClientProps {
     baseCategories: FilterCategory[]
