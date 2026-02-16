@@ -2,8 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Görsel optimizasyonu
-  output: "export",
-
   images: {
     remotePatterns: [
       {
