@@ -40,7 +40,7 @@ function HeroSection() {
                             className="bg-amber-600 text-white hover:bg-amber-700 font-semibold text-base px-8 py-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
                         >
                             <Globe2 className="mr-1 h-5 w-5" />
-                            kategoriler
+                            Kategoriler
                             <ArrowRight className="h-4 w-4" />
                         </Button>
                     </Link>

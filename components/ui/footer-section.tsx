@@ -28,7 +28,7 @@ const footerLinks: { title: string; href: string }[] = [
     href: "/products",
   },
   {
-    title: "nasıl çalışır",
+    title: "Nasıl çalışır",
     href: "/how-work",
   },
 
@@ -51,7 +51,7 @@ function FooterSection({ isDarkMode, setIsDarkMode }: { isDarkMode: boolean, set
           <div className="relative">
             <h2 className="mb-4 text-3xl font-bold tracking-tight">Hatay Mobilya Pazaryeri</h2>
             <p className="mb-6 text-muted-foreground text-sm leading-relaxed">
-              Hatay&apos;ın yerel mobilya üreticilerini  bölgedeki alıcılarla buluşturan B2B pazaryeri. Kaliteli el işçiliği, modern tasarımlar ve güvenilir hizmet anlayışıyla Hatay&apos;ın mobilya sektörünün dijital buluşma noktası.
+              Hatay&apos;ın en iyi mobilya üreticilerini ve mağazalarını tek bir adreste buluşturuyoruz. Eviniz için en güzel mobilyaları, doğrudan üreticisinden, aracısız ve güvenle keşfedin.
             </p>
 
             <div className="absolute -right-4 top-0 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
@@ -71,8 +71,7 @@ function FooterSection({ isDarkMode, setIsDarkMode }: { isDarkMode: boolean, set
             <h3 className="mb-4 text-lg font-semibold">İletişim</h3>
             <address className="space-y-2 text-sm not-italic">
               <p>Web: <Link href="https://hatayyazilim.com">hatayyazilim.com</Link></p>
-              <p>Phone: <Link href="tel:+905537319288">0553 731 92 88</Link></p>
-              <p>Email: <Link href="mailto:[EMAIL_ADDRESS]">omeraydin1.web@gmail.com</Link></p>
+              <p>Telefon: <Link href="tel:+905537319288">0553 731 92 88</Link></p>
             </address>
           </div>
           <div className="relative">

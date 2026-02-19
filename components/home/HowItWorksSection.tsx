@@ -106,7 +106,7 @@ export function HowItWorksSection() {
                     </div>
                     <div aria-hidden="true" className="flex items-center justify-center">
                         <Link href="/auth">
-                            <Button size="lg" className="w-full sm:w-auto px-10 mt-6 bg-primary hover:bg-primary/80 text-black cursor-pointer">Hemen Kayıt Ol</Button>
+                            <Button size="lg" className="w-full sm:w-auto px-10 mt-6 cursor-pointer">Hemen Kayıt Ol</Button>
                         </Link>
                     </div>
                 </div>

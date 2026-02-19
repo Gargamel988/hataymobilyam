@@ -118,7 +118,7 @@ function CategoriesSection({ stats }: { stats?: CategoryStat[] }) {
             {/* Mobile Link */}
             <div className="flex  justify-center mt-6">
                 <Link
-                    href="/kategoriler"
+                    href="/products"
                     className="flex  items-center gap-2 text-amber-700 hover:text-amber-800 font-medium"
                 >
                     Tüm Kategoriler
