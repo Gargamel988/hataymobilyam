@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/providertheme";
-import { PathProvider } from "@/providers/pathprovıder";
+import { PathProvider } from "@/providers/path-provider";
 import { QueryProvider } from "@/providers/QueryProvider";
 import { Navbar } from "@/components/organisms/Navbar";
 import { Footer } from "@/components/organisms/Footer";

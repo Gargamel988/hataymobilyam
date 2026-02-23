@@ -2,7 +2,7 @@ import { Building2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { CompanyCard } from "@/components/molecules/CompanyCard"
-import { type Company } from "@/services/CompanyServices"
+import { type Company } from "@/types/company"
 
 interface CompanyGridProps {
     companies: Company[]

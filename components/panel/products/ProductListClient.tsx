@@ -11,7 +11,7 @@ import {
     MoreVertical,
     Edit,
     Trash2,
-    Package
+
 } from "lucide-react";
 import {
     DropdownMenu,
@@ -25,6 +25,7 @@ import { useRouter } from "next/navigation";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getProductsByCompanyId, DeleteProduct } from "@/services/ProductServices.client";
 import { toast } from "sonner";
+import { translateError } from "@/utils/ErrorTranslator";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -59,8 +60,8 @@ export function ProductListClient({ userId }: ProductListClientProps) {
             setProductToDelete(null);
         },
         onError: (error) => {
-            console.error("Delete error:", error);
-            toast.error("Ürün silinirken bir hata oluştu.");
+
+            toast.error(translateError(error));
             setProductToDelete(null);
         }
     });

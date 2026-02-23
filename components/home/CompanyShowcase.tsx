@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Star, BadgeCheck, MapPin, Package, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { capitalizeWords } from "@/utils/utils"
 
 type Company = {
     id: string | number
@@ -57,7 +58,7 @@ function CompanyShowcase({ companies }: { companies: Company[] }) {
                             <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-1.5">
                                     <h3 className="font-semibold text-foreground truncate group-hover:text-amber-700 transition-colors">
-                                        {company.name}
+                                        {capitalizeWords(company.name)}
                                     </h3>
                                     {company.verified && (
                                         <BadgeCheck

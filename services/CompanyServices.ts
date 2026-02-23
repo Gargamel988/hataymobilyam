@@ -1,67 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
-
-export const uploadFile = async (
-  event: React.ChangeEvent<HTMLInputElement>,
-  // Note: This function uses browser APIs (File/event) so it should only be called from client components
-) => {
-  const file = event.target.files?.[0];
-  if (!file) return;
-
-  const supabase = await createClient();
-
-  // Dosya adını temizle: Türkçe karakterler, boşluklar ve özel karakterleri kaldır
-  const fileExt = file.name.split(".").pop();
-  const timestamp = Date.now();
-  const sanitizedFileName = `avatar-${timestamp}.${fileExt}`;
-
-  const { data, error } = await supabase.storage
-    .from("avatar")
-    .upload(sanitizedFileName, file);
-
-  if (error) {
-    console.error(error);
-    return null;
-  }
-
-  // Public URL al
-  const { data: publicUrlData } = supabase.storage
-    .from("avatar")
-    .getPublicUrl(data.path);
-
-  return publicUrlData.publicUrl;
-};
-
 import type { ProfileFormData } from "@/schemas/profile";
-
-// Türkçe karakterleri dönüştür ve slug oluştur
-const slugify = (text: string): string => {
-  const turkishMap: Record<string, string> = {
-    ı: "i",
-    ğ: "g",
-    ş: "s",
-    ç: "c",
-    ö: "o",
-    ü: "u",
-    İ: "i",
-    Ğ: "g",
-    Ş: "s",
-    Ç: "c",
-    Ö: "o",
-    Ü: "u",
-  };
-
-  return text
-    .toLowerCase()
-    .split("")
-    .map((char) => turkishMap[char] || char)
-    .join("")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
-};
+import { slugify } from "@/utils/utils";
 
 // Profil kaydet veya güncelle (upsert)
 export const upsertProfile = async (profileData: ProfileFormData) => {
@@ -119,22 +58,8 @@ export const getProfile = async () => {
   return data;
 };
 
-export type Company = {
-  id: string;
-  slug: string;
-  name: string;
-  categories: string[];
-  location: string;
-  phone: string;
-  logoSrc: string;
-  productCount: number;
-  rating: number;
-  verified: boolean;
-  description: string;
-  yearEstablished: number;
-  authorized?: string;
-  address?: string;
-};
+export type { Company } from "@/types/company";
+import type { Company } from "@/types/company";
 
 export const getAllCompanies = async (): Promise<Company[]> => {
   const supabase = await createClient();
@@ -155,12 +80,13 @@ export const getAllCompanies = async (): Promise<Company[]> => {
         : ["Genel"],
     location: profile.district || "Hatay",
     phone: profile.phone || "",
+    coverImage: profile.background_url || "",
     logoSrc:
       profile.avatar_url ||
       "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop", // Fallback image
-    productCount: Math.floor(Math.random() * 20) + 1, // Mock product count for visual variety
-    rating: 4.5 + Math.random() * 0.5, // Mock rating
-    verified: Math.random() > 0.5, // Mock verified status
+    productCount: Math.floor(Math.random() * 20) + 1,
+    rating: 4.5 + Math.random() * 0.5,
+    verified: Math.random() > 0.5,
     description: profile.description || "",
     yearEstablished: 2024,
     authorized: profile.admin || "",
@@ -196,10 +122,9 @@ export const getCompanyBySlug = async (
     location: data.district || "Hatay",
     address: data.adress || "",
     phone: data.phone || "",
-    logoSrc:
-      data.avatar_url ||
-      "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=200&fit=crop",
-    productCount: 0, // Need to count products separately or use a join/count
+    coverImage: data.background_url || "",
+    logoSrc: data.avatar_url || "",
+    productCount: 0,
     rating: 0,
     verified: false,
     description: data.description || "",

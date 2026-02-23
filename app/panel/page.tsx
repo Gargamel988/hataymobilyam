@@ -8,31 +8,55 @@ import {
     Store,
     MessageCircle,
     Eye,
-    MousePointerClick
+    MousePointerClick,
+    AlertTriangle
 } from "lucide-react";
 import Link from "next/link";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { QueryClient } from "@tanstack/react-query";
-import { getProductCount, getProfileSlug } from "./services/services";
+import { getProductCount, getProfileSlug, getProfileCompleteness } from "./services/services";
 
 export default async function Page() {
     const queryClient = new QueryClient()
 
     const productCount = await getProductCount();
     const profileSlug = await getProfileSlug();
+    const profileStatus = await getProfileCompleteness();
 
     await queryClient.prefetchQuery({
         queryKey: ['productCount'],
-        queryFn: () => productCount,
+        queryFn: () => productCount ?? 0,
     })
     await queryClient.prefetchQuery({
         queryKey: ['profileSlug'],
-        queryFn: () => profileSlug,
+        queryFn: () => profileSlug ?? null,
     })
 
 
     return (
         <div className="min-h-screen bg-muted/40 pb-20">
+
+            {/* 0. Profile Warning */}
+            {!profileStatus.isComplete && (
+                <section className="container mx-auto px-4 pt-8 pb-0">
+                    <div className="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                        <div className="p-2 bg-amber-100 dark:bg-amber-900/50 rounded-full shrink-0">
+                            <AlertTriangle className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                        </div>
+                        <div className="flex-1">
+                            <h3 className="text-sm font-bold text-amber-800 dark:text-amber-200">
+                                Profiliniz %{profileStatus.completionRate} tamamlandı
+                            </h3>
+                            <p className="text-xs text-amber-700/80 dark:text-amber-300/80 mt-0.5">
+                                Eksik: {profileStatus.missingFields.join(", ")}
+                            </p>
+                        </div>
+                        <Button size="sm" className="bg-amber-600 hover:bg-amber-700 text-white shrink-0" asChild>
+                            <Link href="/panel/profil">Profili Tamamla</Link>
+                        </Button>
+                    </div>
+                </section>
+            )}
 
             {/* 1. Header & Welcome */}
             <section className="container mx-auto px-4 py-8">
@@ -46,12 +70,21 @@ export default async function Page() {
                     <div className="flex gap-3">
                         <HydrationBoundary state={dehydrate(queryClient)}>
 
-                            <Button variant="outline" className="gap-2" asChild>
-                                <Link href={profileSlug ? `/companies/${profileSlug}` : "#"} target="_blank">
-                                    <ExternalLink className="h-4 w-4" />
-                                    Mağazamı Gör
-                                </Link>
-                            </Button>
+                            {profileStatus.isComplete && profileSlug ? (
+                                <Button variant="outline" className="gap-2" asChild>
+                                    <Link href={`/companies/${profileSlug}`} target="_blank">
+                                        <ExternalLink className="h-4 w-4" />
+                                        Mağazamı Gör
+                                    </Link>
+                                </Button>
+                            ) : (
+                                <Button variant="outline" className="gap-2 border-amber-300 text-amber-700 hover:bg-amber-50 dark:border-amber-700 dark:text-amber-400 dark:hover:bg-amber-950/30" asChild>
+                                    <Link href="/panel/profil">
+                                        <AlertTriangle className="h-4 w-4" />
+                                        Önce Profili Tamamla
+                                    </Link>
+                                </Button>
+                            )}
                             <Button className="gap-2 bg-amber-600 hover:bg-amber-700 text-white" asChild>
                                 <Link href="/panel/products/add">
                                     <Plus className="h-4 w-4" />

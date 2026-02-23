@@ -16,6 +16,7 @@ import type { ProductCategory } from "@/lib/data/products"
 import { useInsertProductMutation } from "@/mutation/Product"
 import { uploadProductImage } from "@/services/ProductServices.client"
 import { toast } from "sonner"
+import { translateError } from "@/utils/ErrorTranslator"
 import type { ProductBadgeType } from "@/components/molecules/ProductCard"
 
 export function ProductForm() {
@@ -94,7 +95,7 @@ export function ProductForm() {
             }
         } catch (error) {
             console.error(error)
-            toast.error("Görseller yüklenirken bir sorun oluştu.")
+            toast.error(translateError(error))
         }
     }
 
@@ -104,13 +105,7 @@ export function ProductForm() {
             toast.success("Ürün başarıyla eklendi.")
         } catch (error: any) {
             console.error("Submission error:", error)
-            let errorMessage = error.message || (typeof error === 'object' ? JSON.stringify(error) : "Bilinmeyen hata")
-
-            if (error.code === '23503') {
-                errorMessage = "Ürün ekleyebilmek için önce firma profilinizi oluşturmalısınız. Lütfen profil sayfasına giderek bilgilerinizi tamamlayın."
-            }
-
-            toast.error(`Hata: ${errorMessage}`)
+            toast.error(translateError(error));
         }
     }
 

@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { BadgeCheck, MapPin, MessageSquare, Phone } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { capitalizeWords } from "@/utils/utils"
 
 interface WorkshopHeroProps {
     name: string
@@ -30,17 +31,19 @@ function WorkshopHero({
     phone
 }: WorkshopHeroProps) {
 
-
     return (
         <section className={cn("relative", className)}>
             {/* Cover Image */}
             <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
                 <Image
-                    src={background_url || "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=600&fit=crop"} // Default fallback
+                    src={background_url || "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&h=800&fit=crop&q=90"}
                     alt={name}
                     fill
+                    quality={100}
+                    sizes="100vw"
                     className="object-cover"
                     priority
+                    unoptimized={!!background_url}
                 />
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
@@ -61,8 +64,8 @@ function WorkshopHero({
                         {/* Info */}
                         <div className="flex-1">
                             <div className="flex items-center gap-2 mb-1">
-                                <h2 className="text-xl md:text-2xl font-bold text-foreground">
-                                    {name}
+                                <h2 className="capitalize text-xl md:text-2xl font-bold text-foreground">
+                                    {capitalizeWords(name)}
                                 </h2>
                                 {isVerified && (
                                     <BadgeCheck className="h-5 w-5 text-blue-500" />
@@ -72,7 +75,7 @@ function WorkshopHero({
                             {/* Authorized Person */}
                             {authorized && (
                                 <p className="text-sm text-muted-foreground mb-1">
-                                    Yetkili: <span className="font-medium text-foreground">{authorized}</span>
+                                    Yetkili: <span className="font-medium text-foreground">{capitalizeWords(authorized)}</span>
                                 </p>
                             )}
 
@@ -91,13 +94,13 @@ function WorkshopHero({
 
                         {/* Actions */}
                         <div className="flex gap-2 w-full md:w-auto">
-                            <Link href={`tel:+90${phone}`} target="_blank">
+                            <Link href={`tel:+9${phone}`} target="_blank">
                                 <Button variant="outline" className="flex-1 md:flex-none">
                                     <Phone className="h-4 w-4" />
                                     Ara
                                 </Button>
                             </Link>
-                            <Link href={`https://wa.me/+90${phone}`} target="_blank">
+                            <Link href={`https://wa.me/+9${phone}`} target="_blank">
                                 <Button className="flex-1 md:flex-none bg-amber-800 hover:bg-amber-700 text-white gap-2">
                                     <MessageSquare className="h-4 w-4" />
                                     Mesaj Gönder

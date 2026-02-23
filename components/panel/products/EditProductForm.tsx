@@ -16,6 +16,7 @@ import type { ProductCategory } from "@/lib/data/products"
 import { useUpdateProductMutation } from "@/mutation/Product"
 import { uploadProductImage } from "@/services/ProductServices.client"
 import { toast } from "sonner"
+import { translateError } from "@/utils/ErrorTranslator"
 import type { ProductBadgeType } from "@/components/molecules/ProductCard"
 import { useEffect } from "react"
 
@@ -103,7 +104,7 @@ export function EditProductForm({ initialData, productId }: EditProductFormProps
             }
         } catch (error) {
             console.error(error)
-            toast.error("Görseller yüklenirken bir sorun oluştu.")
+            toast.error(translateError(error))
         }
     }
 
@@ -113,9 +114,8 @@ export function EditProductForm({ initialData, productId }: EditProductFormProps
             await updateProduct({ id: productId, product: data })
             toast.success("Ürün başarıyla güncellendi.")
         } catch (error: any) {
-            console.error("Submission error:", error?.message, error?.code, error?.details, error?.hint, error)
-            const errorMessage = error?.message || error?.details || error?.hint || "Bilinmeyen hata"
-            toast.error(`Hata: ${errorMessage}`)
+            console.error("Submission error:", error)
+            toast.error(translateError(error))
         }
     }
 

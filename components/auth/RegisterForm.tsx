@@ -1,5 +1,4 @@
 "use client"
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -9,6 +8,8 @@ import { Controller, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useAuth } from "@/hooks/useAuth"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 const sehirler: string[] = [
     "Antakya",
@@ -26,12 +27,12 @@ const sehirler: string[] = [
 
 function RegisterForm() {
     const [showPassword, setShowPassword] = useState(false)
+    const router = useRouter()
     const { registerMutation } = useAuth()
-
     const {
         control,
         handleSubmit,
-        formState: { errors, isSubmitting },
+        formState: { errors },
     } = useForm<RegisterScheme>({
         resolver: zodResolver(registerScheme),
         defaultValues: {
@@ -45,13 +46,19 @@ function RegisterForm() {
     })
 
     const onSubmit = (data: RegisterScheme) => {
+        const cleanPhone = data.telefon.replace(/\D/g, "")
+
         registerMutation.mutate({
             email: data.email,
             password: data.sifre,
             firma_adi: data.firma_adi,
             yetkili_adi: data.yetkili_adi,
-            telefon: data.telefon,
+            telefon: cleanPhone,
             sehir: data.sehir,
+        }, {
+            onSuccess: () => {
+                router.push(`/auth/callback?email=${encodeURIComponent(data.email)}`)
+            }
         })
     }
 
@@ -68,7 +75,7 @@ function RegisterForm() {
             </div>
 
             {/* Form */}
-            <form action="/api/auth/register" method="POST" className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
                 {/* Firma Adı */}
                 <div className="space-y-1.5">
                     <Label htmlFor="firma_adi" className="text-sm font-medium">
@@ -88,8 +95,6 @@ function RegisterForm() {
                                         placeholder="Örn: Antakya Mobilya"
                                         className="h-11 pl-10"
                                         inputMode="text"
-                                        required
-
                                     />
                                 </div>
                                 {errors.firma_adi && (
@@ -119,7 +124,6 @@ function RegisterForm() {
                                         placeholder="Ad Soyad"
                                         className="h-11 pl-10"
                                         inputMode="text"
-                                        required
                                     />
                                 </div>
                                 {errors.yetkili_adi && (
@@ -232,8 +236,6 @@ function RegisterForm() {
                                             placeholder="Min. 8 karakter"
                                             className="h-11 pl-10 pr-10"
                                             inputMode="text"
-                                            required
-
                                         />
                                         <button
                                             type="button"
@@ -288,10 +290,10 @@ function RegisterForm() {
                 {/* Submit */}
                 <Button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={registerMutation.isPending}
                     className="w-full h-11 bg-amber-700 hover:bg-amber-800 text-white rounded-lg font-medium mt-4"
                 >
-                    {isSubmitting ? "Kayıt Yapılıyor..." : "Kayıt Ol"}
+                    {registerMutation.isPending ? "Kayıt Yapılıyor..." : "Kayıt Ol"}
                 </Button>
 
                 {/* Terms */}

@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { slugify } from "@/utils/utils";
 
 export interface Category {
   id: string;
@@ -79,33 +80,6 @@ export async function getCategories(): Promise<Category[]> {
       supplierCount: supplierSets.get(cat.name)?.size || 0,
     }))
     .sort((a, b) => b.productCount - a.productCount);
-}
-
-function slugify(text: string) {
-  const trMap: Record<string, string> = {
-    ç: "c",
-    ğ: "g",
-    ş: "s",
-    ü: "u",
-    ö: "o",
-    ı: "i",
-    Ç: "C",
-    Ğ: "G",
-    Ş: "S",
-    Ü: "U",
-    Ö: "O",
-    İ: "I",
-  };
-
-  return text
-    .split("")
-    .map((char) => trMap[char] || char)
-    .join("")
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/[^\w\-]+/g, "")
-    .replace(/\-\-+/g, "-");
 }
 
 const getCategory = async () => {

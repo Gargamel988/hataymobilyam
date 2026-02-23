@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { FooterSection } from "@/components/ui/footer-section";
 import { useTheme } from "next-themes";
-import { usePath } from "@/providers/pathprovıder"
+import { usePath } from "@/providers/path-provider"
 
 
 function Footer() {

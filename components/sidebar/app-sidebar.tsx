@@ -3,6 +3,7 @@ import React from "react"
 import {
   Settings2,
   SquareTerminal,
+
 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { NavMain } from "@/components/sidebar/nav-main"
@@ -30,7 +31,7 @@ export function AppSidebar({ name, email, avatar, ...props }: { name: string, em
     teams: [
       {
         name: "Hatay Mobilyam",
-        logo: "/images/logo.webp",
+        logo: "/images/hatay-mobilyam-logo.jpeg",
         plan: "Yönetim Paneli",
       },
     ],

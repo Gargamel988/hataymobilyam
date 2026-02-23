@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { uploadFile } from "@/services/CompanyServices.client"
+import { uploadFile, uploadBackgroundFile } from "@/services/CompanyServices.client"
 import {
     Upload,
     AlertCircle,
@@ -37,6 +37,7 @@ import { createClient } from "@/lib/supabase/client"
 import { useQuery } from "@tanstack/react-query"
 import { getProfile } from "@/services/CompanyServices.client"
 import { formatPhoneNumber } from "@/utils/FormatTel"
+import { translateError } from "@/utils/ErrorTranslator"
 
 
 const supabase = createClient();
@@ -129,7 +130,7 @@ export function ProfileForm() {
 
     // Seçili uzmanlık alanlarını izle
     const selectedExpertise = watch("expertise") || []
-    console.log(selectedExpertise)
+
     const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const url = await uploadFile(e)
         if (url) {
@@ -139,7 +140,7 @@ export function ProfileForm() {
     }
 
     const handleBackgroundUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const url = await uploadFile(e)
+        const url = await uploadBackgroundFile(e)
         if (url) {
             setBackgroundUrl(url)
             setValue("background_url", url)
@@ -166,7 +167,8 @@ export function ProfileForm() {
                 toast.success("Profil başarıyla kaydedildi!")
             },
             onError: (error) => {
-                toast.error(error.message || "İşlem başarısız")
+                console.error("Profile update error:", error)
+                toast.error(translateError(error))
             },
         })
     }
@@ -239,7 +241,7 @@ export function ProfileForm() {
                                                 placeholder="555 555 55 55"
                                                 autoComplete="tel"
                                                 type="tel"
-                                                maxLength={13}
+                                                maxLength={15}
                                                 aria-invalid={!!fieldState.error}
                                                 aria-describedby={fieldState.error ? "phone-error" : undefined}
                                                 {...field}
@@ -458,6 +460,9 @@ export function ProfileForm() {
                         >
                             <ImageIcon className="mr-2 h-4 w-4" /> Fotoğraf Ekle
                         </Button>
+                        <p className="text-xs text-muted-foreground text-center">
+                            Minimum 1200×400 piksel, tercihen 1920×600 veya üstü.
+                        </p>
                     </CardContent>
                 </Card>
 

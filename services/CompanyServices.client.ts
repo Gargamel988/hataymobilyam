@@ -2,7 +2,8 @@
 
 import { createClient } from "@/lib/supabase/client";
 import type { ProfileFormData } from "@/schemas/profile";
-import type { Company } from "./CompanyServices";
+import type { Company } from "@/types/company";
+import { slugify } from "@/utils/utils";
 
 export { type Company } from "./CompanyServices";
 
@@ -36,34 +37,63 @@ export const uploadFile = async (
   return publicUrlData.publicUrl;
 };
 
-// Türkçe karakterleri dönüştür ve slug oluştur
-const slugify = (text: string): string => {
-  const turkishMap: Record<string, string> = {
-    ı: "i",
-    ğ: "g",
-    ş: "s",
-    ç: "c",
-    ö: "o",
-    ü: "u",
-    İ: "i",
-    Ğ: "g",
-    Ş: "s",
-    Ç: "c",
-    Ö: "o",
-    Ü: "u",
-  };
+// Resim boyutunu kontrol eden yardımcı fonksiyon
+const checkImageDimensions = (
+  file: File,
+): Promise<{ width: number; height: number }> => {
+  return new Promise((resolve, reject) => {
+    const img = new window.Image();
+    img.onload = () => {
+      resolve({ width: img.naturalWidth, height: img.naturalHeight });
+      URL.revokeObjectURL(img.src);
+    };
+    img.onerror = () => reject(new Error("Resim yüklenemedi"));
+    img.src = URL.createObjectURL(file);
+  });
+};
 
-  return text
-    .toLowerCase()
-    .split("")
-    .map((char) => turkishMap[char] || char)
-    .join("")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
+export const uploadBackgroundFile = async (
+  event: React.ChangeEvent<HTMLInputElement>,
+) => {
+  const file = event.target.files?.[0];
+  if (!file) return null;
+
+  // Minimum boyut kontrolü
+  try {
+    const { width, height } = await checkImageDimensions(file);
+    if (width < 1200 || height < 400) {
+      const { toast } = await import("sonner");
+      toast.error(
+        `Arka plan resmi çok küçük (${width}×${height}). Minimum 1200×400 piksel olmalı. Lütfen daha yüksek çözünürlüklü bir resim seçin.`,
+      );
+      // input'u sıfırla
+      event.target.value = "";
+      return null;
+    }
+  } catch {
+    // Boyut kontrol edilemezse yine de yüklemeye devam et
+  }
+
+  const supabase = getSupabase();
+
+  const fileExt = file.name.split(".").pop();
+  const timestamp = Date.now();
+  const sanitizedFileName = `background-${timestamp}.${fileExt}`;
+
+  const { data, error } = await supabase.storage
+    .from("avatar")
+    .upload(sanitizedFileName, file);
+
+  if (error) {
+    console.error(error);
+    return null;
+  }
+
+  const { data: publicUrlData } = supabase.storage
+    .from("avatar")
+    .getPublicUrl(data.path);
+
+  return publicUrlData.publicUrl;
 };
 
 export const upsertProfile = async (profileData: ProfileFormData) => {
@@ -151,5 +181,6 @@ export const getAllCompanies = async (): Promise<Company[]> => {
     yearEstablished: 2024,
     authorized: profile.admin || "",
     address: profile.address || "",
+    coverImage: profile.background_url || "",
   }));
 };

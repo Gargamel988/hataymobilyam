@@ -1,7 +1,14 @@
-import { Login, Logout, Register } from "@/services/AuthServices";
+import {
+  Login,
+  Logout,
+  Register,
+  verifyOtpEmail,
+} from "@/services/AuthServices";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+
+import { translateError } from "@/utils/ErrorTranslator";
 
 export const useAuth = () => {
   const router = useRouter();
@@ -9,10 +16,26 @@ export const useAuth = () => {
   const registerMutation = useMutation({
     mutationFn: Register,
     onSuccess: () => {
-      toast.success("Kayıt başarılı! Email adresinizi kontrol edin.");
+      toast.success(
+        "Kayıt başarılı! Email adresinize gelen doğrulama kodunu girin.",
+      );
+      router.refresh();
     },
     onError: (error: Error) => {
-      toast.error(`Kayıt hatası: ${error.message}`);
+      console.error("Kayıt hatası:", error);
+      toast.error(translateError(error));
+    },
+  });
+
+  const verifyOtpMutation = useMutation({
+    mutationFn: verifyOtpEmail,
+    onSuccess: () => {
+      toast.success("E-posta başarıyla doğrulandı!");
+      router.refresh();
+    },
+    onError: (error: Error) => {
+      console.error("Doğrulama hatası:", error);
+      toast.error(translateError(error));
     },
   });
 
@@ -20,11 +43,11 @@ export const useAuth = () => {
     mutationFn: Login,
     onSuccess: () => {
       toast.success("Giriş başarılı!");
-      router.push("/");
       router.refresh(); // Middleware session güncellemesi için
     },
     onError: (error: Error) => {
-      toast.error(`Giriş hatası: ${error.message}`);
+      console.error("Giriş hatası:", error);
+      toast.error(translateError(error));
     },
   });
 
@@ -32,16 +55,17 @@ export const useAuth = () => {
     mutationFn: Logout,
     onSuccess: () => {
       toast.success("Çıkış başarılı!");
-      router.push("/giris");
       router.refresh();
     },
     onError: (error: Error) => {
-      toast.error(`Çıkış hatası: ${error.message}`);
+      console.error("Çıkış hatası:", error);
+      toast.error(translateError(error));
     },
   });
 
   return {
     registerMutation,
+    verifyOtpMutation,
     loginMutation,
     logoutMutation,
   };

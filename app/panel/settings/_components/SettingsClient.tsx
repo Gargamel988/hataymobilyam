@@ -9,6 +9,7 @@ import { Key, Trash2, LogOut, Loader2, Eye, EyeOff } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
+import { translateError } from "@/utils/ErrorTranslator"
 
 export function SettingsClient() {
     const router = useRouter()
@@ -49,8 +50,8 @@ export function SettingsClient() {
             setNewPassword("")
             setConfirmPassword("")
         } catch (error: unknown) {
-            const message = error instanceof Error ? error.message : "Şifre güncellenirken bir hata oluştu."
-            toast.error(message)
+
+            toast.error(translateError(error))
         } finally {
             setIsUpdatingPassword(false)
         }
@@ -62,8 +63,9 @@ export function SettingsClient() {
             const supabase = createClient()
             await supabase.auth.signOut()
             router.push("/auth")
-        } catch {
-            toast.error("Çıkış yapılırken bir hata oluştu.")
+        } catch (error) {
+            console.error("Sign out error:", error)
+            toast.error(translateError(error))
             setIsLoggingOut(false)
         }
     }

@@ -10,7 +10,6 @@ export function useUpsertProfile() {
     mutationFn: (data: ProfileFormData) => upsertProfile(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["companyProfile"] });
-      console.log("Profil başarıyla kaydedildi");
     },
     onError: (error: Error) => {
       console.error("Profil kaydetme hatası:", error.message);

@@ -11,7 +11,7 @@ export const useInsertProductMutation = () => {
   return useMutation({
     mutationFn: InsertProduct,
     onSuccess: (data) => {
-      console.log("Product inserted successfully", data);
+      // Ürün başarıyla eklendi
     },
     onError: (error) => {
       console.error("Error inserting product:", error);
@@ -24,7 +24,7 @@ export const useUpdateProductMutation = () => {
     mutationFn: ({ id, product }: { id: string; product: Product }) =>
       UpdateProduct(id, product),
     onSuccess: (data) => {
-      console.log("Product updated successfully", data);
+      // Ürün başarıyla güncellendi
     },
     onError: (error: any) => {
       console.error(

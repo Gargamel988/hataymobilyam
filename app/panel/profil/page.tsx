@@ -77,8 +77,6 @@ export default async function ProfilePage() {
                         {hasAvatar ? <CheckCircle2 className="h-3 w-3" /> : <AlertCircle className="h-3 w-3" />}
                         Firma Logosu
                     </span>
-                    {/* Galeri şimdilik opsiyonel veya ayrı bir tablo/alan olabilir */}
-                    {/* <span className="flex items-center gap-1 text-amber-600 dark:text-amber-400 font-medium"><AlertCircle className="h-3 w-3" /> Galeri Görselleri</span> */}
                 </div>
             </div>
 

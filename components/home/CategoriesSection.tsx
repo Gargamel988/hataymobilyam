@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { slug } from "@/utils/GenerateSlug"
+import { slugify } from "@/utils/utils"
 import { Category } from "@/types/categories"
 
 
@@ -42,7 +42,7 @@ function CategoriesSection({ stats }: { stats?: CategoryStat[] }) {
         return {
             id: index + 1,
             name: name,
-            slug: slug(name),
+            slug: slugify(name),
             image: image,
             productCount: stat?.productCount || 0,
             supplierCount: stat?.supplierCount || 0,

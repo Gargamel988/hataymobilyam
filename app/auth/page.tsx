@@ -19,6 +19,7 @@ export default async function Page({ searchParams }: AuthPageProps) {
     const mode = params.mode
     const isLogin = mode !== 'register'
 
+
     return (
         <div className="min-h-screen flex overflow-hidden">
             {/* Sol Panel - Form veya Görsel */}

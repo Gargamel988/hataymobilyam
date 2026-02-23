@@ -29,6 +29,7 @@ export const Register = async ({
     email,
     password,
     options: {
+      emailRedirectTo: `${window.location.origin}/auth/callback`,
       data: {
         firma_adi,
         yetkili_adi,
@@ -75,4 +76,24 @@ export const getCurrentUser = async () => {
 
   if (error) throw error;
   return user;
+};
+
+// E-posta OTP Doğrula
+export const verifyOtpEmail = async ({
+  email,
+  token,
+}: {
+  email: string;
+  token: string;
+}) => {
+  const supabase = createClient();
+
+  const { data, error } = await supabase.auth.verifyOtp({
+    email,
+    token,
+    type: "signup",
+  });
+
+  if (error) throw error;
+  return data;
 };

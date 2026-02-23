@@ -24,7 +24,7 @@ import {
     Menu,
     X,
 } from "lucide-react"
-import { usePath } from "@/providers/pathprovıder"
+import { usePath } from "@/providers/path-provider"
 
 const categories = [
     {
@@ -74,7 +74,7 @@ export function Navbar() {
                 <Link href="/" className="flex items-center gap-3">
                     <div className="relative h-10 w-10 overflow-hidden rounded-lg">
                         <Image
-                            src="/images/logo.webp"
+                            src="/images/hatay-mobilyam-logo.jpeg"
                             alt="Hatay Mobilya Logo"
                             fill
                             className="object-contain"

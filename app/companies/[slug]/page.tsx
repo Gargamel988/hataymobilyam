@@ -65,7 +65,7 @@ export default async function CompanyDetailPage({ params }: PageProps) {
     const workshopData = {
         name: company.name,
         slogan: company.categories[0],
-        coverImage: company.logoSrc ? company.logoSrc.replace("w=200", "w=1200").replace("h=200", "h=600") : "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=600&fit=crop",
+        coverImage: company.coverImage ? company.coverImage : "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=600&fit=crop",
         logo: company.logoSrc,
         authorized: company.authorized,
         experience: `${yearsExperience > 0 ? yearsExperience : 1} Yıllık Tecrübe`,

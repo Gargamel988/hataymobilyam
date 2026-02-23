@@ -13,7 +13,7 @@ export function CompanyCTA() {
                 Hatay Mobilya Pazarı&apos;na katılın, ürünlerinizi sergileyin ve binlerce potansiyel müşteriye ulaşın.
             </p>
             <Button asChild size="lg" className="bg-amber-600 hover:bg-amber-700 text-white">
-                <Link href="/giris">
+                <Link href="/auth">
                     Hemen Başla
                 </Link>
             </Button>

@@ -1,9 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Badge } from "@/components/atoms/Badge"
-import { CheckCircle, MapPin, Star, Package, Clock, ArrowRight } from "lucide-react"
-import { type Company } from "@/services/CompanyServices"
-
+import { MapPin, Star, Package, Clock, ArrowRight, BadgeCheck } from "lucide-react"
+import { type Company } from "@/types/company"
+import { capitalizeWords } from "@/utils/utils"
 interface CompanyCardProps {
     company: Company
     variant?: "grid" | "list"
@@ -26,18 +25,19 @@ export function CompanyCard({ company, variant = "grid" }: CompanyCardProps) {
                             sizes="112px"
                         />
                         {company.verified && (
-                            <div className="absolute bottom-1 right-1 bg-green-500 rounded-full p-0.5">
-                                <CheckCircle className="h-3 w-3 text-white" />
+                            <div className="absolute top-1.5 right-1.5 bg-white rounded-full shadow-md">
+                                <BadgeCheck
+                                    aria-label="Onaylı firma"
+                                    className="h-5 w-5 text-blue-500" />
                             </div>
                         )}
                     </div>
-
                     {/* Content */}
                     <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-4">
                             <div>
                                 <h3 className="font-semibold text-lg text-foreground group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors">
-                                    {company.name}
+                                    {capitalizeWords(company.name)}
                                 </h3>
                                 <p
 
@@ -47,12 +47,7 @@ export function CompanyCard({ company, variant = "grid" }: CompanyCardProps) {
                                     <span>{company.location}, Hatay</span>
                                 </div>
                             </div>
-                            {company.verified && (
-                                <Badge variant="green" className="text-xs gap-1 shrink-0">
-                                    <CheckCircle className="h-3 w-3" />
-                                    Onaylı
-                                </Badge>
-                            )}
+
                         </div>
 
                         {company.description && (
@@ -94,14 +89,7 @@ export function CompanyCard({ company, variant = "grid" }: CompanyCardProps) {
         <Link href={`/companies/${company.slug}`}>
             <div className="group relative flex flex-col gap-4 p-5 rounded-2xl bg-card border border-border transition-all duration-300 hover:shadow-xl hover:shadow-amber-100/50 dark:hover:shadow-amber-900/20 hover:border-amber-300 hover:-translate-y-1 cursor-pointer overflow-hidden h-full">
                 {/* Verified Badge */}
-                {company.verified && (
-                    <div className="absolute top-3 right-3">
-                        <Badge variant="green" className="text-xs gap-1">
-                            <CheckCircle className="h-3 w-3" />
-                            Onaylı
-                        </Badge>
-                    </div>
-                )}
+
 
                 {/* Header with Logo */}
                 <div className="flex items-start gap-4">
@@ -115,8 +103,13 @@ export function CompanyCard({ company, variant = "grid" }: CompanyCardProps) {
                         />
                     </div>
                     <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-foreground line-clamp-1 group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors">
+                        <h3 className="flex items-center gap-2 font-semibold text-foreground line-clamp-1 group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors">
                             {company.name}
+                            {company.verified && (
+                                <BadgeCheck
+                                    aria-label="Onaylı firma"
+                                    className="h-4 w-4 text-blue-500 flex-shrink-0 " />
+                            )}
                         </h3>
                         <p className="text-sm text-amber-600 dark:text-amber-500 font-medium mt-0.5 line-clamp-1">{company.categories?.[0]}</p>
                         <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1">

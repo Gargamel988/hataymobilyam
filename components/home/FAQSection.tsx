@@ -14,88 +14,58 @@ export function FAQSection() {
 
     const faqs = [
         {
-            question: "Üyelik ücretsiz mi?",
-            answer: "Evet, platformumuza üye olmak alıcılar için tamamen ücretsizdir. Kurumsal firmalar için ise kayıt ücretsiz olup, gelişmiş özellikler için farklı paket seçenekleri sunulmaktadır.",
+            question: "HatayMobilya.com nedir?",
+            answer: "HatayMobilya.com, Hatay'ın köklü mobilya geleneğini 81 ille buluşturan, yerel üreticileri doğrudan tüketicilerle bir araya getiren dijital bir platformdur.",
             category: "Genel"
         },
         {
-            question: "Nasıl firma eklerim?",
-            answer: "Üye girişi yaptıktan sonra 'Firma Ekle' butonuna tıklayarak firmanızın bilgilerini girebilir, görsellerinizi yükleyebilir ve onay sürecinin ardından firmanızı yayınlayabilirsiniz.",
-            category: "Satıcılar"
-        },
-        {
-            question: "İletişim nasıl kurulur?",
-            answer: "Beğendiğiniz ürün veya firmanın sayfasında bulunan 'Teklif İste', 'WhatsApp' veya 'Telefon' butonlarını kullanarak doğrudan satıcı ile iletişime geçebilirsiniz.",
-            category: "Alıcılar"
-        },
-        {
-            question: "Firmalar nasıl doğrulanıyor?",
-            answer: "Platforma kaydolan tüm firmalar, kimlik ve vergi doğrulama sürecinden geçirilir. Ticaret sicil belgesi, vergi levhası ve yetkili kişi kimlik doğrulaması yapılır. Onaylanan firmalar 'Doğrulanmış' rozeti alır.",
-            category: "Güvenlik"
-        },
-        {
-            question: "Ödeme platformda mı yapılıyor?",
-            answer: "Hayır, bizim platformumuz bir B2B marketplace olup, alıcı ve satıcıyı buluşturur. Ödeme ve fiyat görüşmeleri taraflar arasında doğrudan gerçekleşir. Platform sadece iletişimi kolaylaştırır.",
+            question: "Satın alma işlemi nasıl gerçekleşir?",
+            answer: "Platformumuz bir sergi ve iletişim kanalıdır. Beğendiğiniz ürünü seçtikten sonra üreticiyle doğrudan WhatsApp veya telefon üzerinden iletişime geçerek detayları konuşabilir ve siparişinizi oluşturabilirsiniz.",
             category: "Genel"
         },
         {
-            question: "Firma sayfamı nasıl öne çıkarabilirim?",
-            answer: "Premium üyelik paketleri ile firma sayfanız arama sonuçlarında üst sıralarda yer alabilir, anasayfada öne çıkarılabilir ve kategori sayfalarında öncelikli gösterilebilir. Ayrıca sınırsız ürün ekleme, istatistikler ve reklam alanları gibi avantajlardan yararlanabilirsiniz.",
-            category: "Satıcılar"
+            question: "Teslimat tüm Türkiye'ye yapılıyor mu?",
+            answer: "Evet, Hatay'daki üreticilerimiz mobilya sevkiyatına uygun lojistik ağları ile Türkiye'nin 81 iline güvenli gönderim sağlamaktadır.",
+            category: "Sipariş ve Teslimat"
         },
         {
-            question: "Yurt dışı firmalarla da çalışabiliyor muyum?",
-            answer: "Evet, platformumuzda Türkiye ve yurt dışından birçok firma bulunmaktadır. Arama filtrelerinde 'Ülke' seçeneğini kullanarak istediğiniz bölgedeki firmaları bulabilirsiniz.",
-            category: "Alıcılar"
+            question: "Özel ölçü ve tasarım yapıyor musunuz?",
+            answer: "Hataylı mobilya ustalarımız talepleriniz doğrultusunda özel ölçü, renk ve tasarım seçenekleri sunabilmektedir. İletişime geçtiğiniz firmaya talebinizi iletebilirsiniz.",
+            category: "Sipariş ve Teslimat"
         },
         {
-            question: "Minimum sipariş miktarı var mı?",
-            answer: "Minimum sipariş miktarı firmadan firmaya değişiklik gösterir. Her firmanın ürün sayfasında veya firma profilinde MOQ (Minimum Order Quantity) bilgisi yer almaktadır. Detaylar için doğrudan satıcı ile iletişime geçebilirsiniz.",
-            category: "Alıcılar"
+            question: "Fiyatlar neden doğrudan yazılmıyor?",
+            answer: "Mobilya ürünlerinde kumaş seçimi, ölçü değişiklikleri ve nakliye mesafesi fiyatı etkilediği için en güncel ve net fiyat bilgisini üreticiden doğrudan almanız daha sağlıklıdır.",
+            category: "Sipariş ve Teslimat"
         },
         {
-            question: "Ürün fotoğraflarımı nasıl yüklerim?",
-            answer: "Firma panelinizden 'Ürünler' bölümüne giderek yeni ürün ekleyebilirsiniz. Her ürün için 10 adede kadar fotoğraf yükleyebilirsiniz. Fotoğraflar JPG, PNG formatında ve minimum 800x800 piksel olmalıdır. İlk yüklediğiniz fotoğraf kapak resmi olarak kullanılır.",
-            category: "Satıcılar"
+            question: "Üretici olarak nasıl kayıt olurum?",
+            answer: "Üst menüdeki 'Giriş Yap' veya 'Firma Katılım' butonuna tıklayarak üyelik sürecini başlatabilir, ardından onay sürecinin ardından ürünlerinizi ekleyebilirsiniz.",
+            category: "Üreticiler İçin"
         },
         {
-            question: "Gelen teklifleri nasıl yönetirim?",
-            answer: "Firma panelinizde 'Gelen Talepler' bölümünden size ulaşan tüm teklif taleplerini, mesajları ve sorgulamaları görebilir, yanıtlayabilir ve takip edebilirsiniz. E-posta ve SMS bildirimleri ile anlık olarak haberdar olursunuz.",
-            category: "Satıcılar"
+            question: "Hangi bölgelerden üretici kabul ediliyor?",
+            answer: "Platformumuz öncelikle Hatay ilindeki (özellikle Antakya ve çevre ilçelerdeki) mobilya üreticilerini desteklemek üzere kurulmuştur.",
+            category: "Üreticiler İçin"
         },
         {
-            question: "Firma bilgilerimi değiştirebilir miyim?",
-            answer: "Evet, firma panelinizden istediğiniz zaman şirket bilgilerinizi, iletişim detaylarınızı, açıklamanızı ve görsellerinizi güncelleyebilirsiniz. Önemli değişiklikler (firma ünvanı, vergi numarası gibi) tekrar doğrulama gerektirebilir.",
-            category: "Satıcılar"
+            question: "Üreticilerle nasıl iletişim kurarım?",
+            answer: "Firma profil sayfalarında veya ürün detaylarında bulunan 'WhatsApp ile Ulaş' veya 'Telefon' butonlarını kullanarak 7/24 iletişim kurabilirsiniz.",
+            category: "Üreticiler İçin"
         },
         {
-            question: "Platformda reklam verebilir miyim?",
-            answer: "Evet, banner reklamları, sponsorlu içerikler ve kategori özel reklamlar gibi farklı reklam seçeneklerimiz bulunmaktadır. Detaylı bilgi için satış ekibimizle iletişime geçebilirsiniz.",
-            category: "Satıcılar"
+            question: "Hatay mobilyasını özel kılan nedir?",
+            answer: "Hatay mobilyası, nesiller boyu aktarılan el işçiliği, sağlam masif ağaç kullanımı ve kendine has oyma işçiliği ile bilinir. Hem klasik hem de modern tasarımlarda yüksek kalite sunar.",
+            category: "Kalite ve Güven"
         },
         {
-            question: "Kaç adet ürün ekleyebilirim?",
-            answer: "Ücretsiz üyelikte 20 ürüne kadar ekleme yapabilirsiniz. Standart pakette 100, Premium pakette 500 ve Enterprise pakette sınırsız ürün ekleme hakkınız bulunur.",
-            category: "Satıcılar"
-        },
-        {
-            question: "Alıcı olarak kayıt olmak zorunda mıyım?",
-            answer: "Firmaları ve ürünleri keşfetmek için kayıt olmanıza gerek yoktur. Ancak teklif isteme, favorilere ekleme ve satıcı ile direkt iletişim kurabilmek için ücretsiz üyelik oluşturmanız gerekmektedir.",
-            category: "Alıcılar"
-        },
-        {
-            question: "Satıcı puanlama sistemi var mı?",
-            answer: "Evet, alıcılar geçmiş işlemleri sonrası satıcıları 5 yıldız üzerinden değerlendirebilir ve yorum bırakabilir. Bu puanlamalar firma sayfalarında görünür ve güvenilirlik göstergesi olarak kullanılır.",
-            category: "Genel"
-        },
-        {
-            question: "Hesabımı nasıl silerim?",
-            answer: "Hesap ayarlarınızdan 'Hesabı Kapat' seçeneği ile hesabınızı silebilirsiniz. Bu işlem geri alınamaz ve tüm verileriniz kalıcı olarak silinir. Aktif ilanlarınız varsa önce bunları kaldırmanız gerekir.",
-            category: "Genel"
+            question: "Platform güvenilir mi?",
+            answer: "Sistemimizde yer alan tüm firmalar vergi levhası ve yetkili kişi onayıyla sisteme dahil edilir. Doğrudan üreticiyle görüştüğünüz için süreci şeffaf bir şekilde yönetebilirsiniz.",
+            category: "Kalite ve Güven"
         }
     ];
 
-    const categories = ["Genel", "Alıcılar", "Satıcılar", "Güvenlik"];
+    const categories = ["Genel", "Sipariş ve Teslimat", "Üreticiler İçin", "Kalite ve Güven"];
 
     const filteredFaqs = faqs.filter(faq => faq.category === activeCategory);
 
